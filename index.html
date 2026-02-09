@@ -1,25 +1,255 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Valentine’s Day ❤️</title>
-  <style>
-    body {
-      background-color: pink;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 100px;
-    }
-    h1 {
-      color: red;
-    }
-    p {
-      font-size: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine? ❤️</title>
+
+<style>
+/* ===== BASE ===== */
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  font-family:'Segoe UI',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===== BACKGROUND ===== */
+.bg{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+  background-size:400% 400%;
+  animation:bg 12s ease infinite;
+  z-index:0;
+}
+@keyframes bg{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ===== WAVE WATERMARK ===== */
+.wave-watermark{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.wave-text{
+  position:absolute;
+  width:200%;
+  top:50%;
+  left:-50%;
+  font-size:26px;
+  color:rgba(255,255,255,0.15);
+  white-space:nowrap;
+  letter-spacing:4px;
+  animation:wave 18s linear infinite;
+}
+@keyframes wave{
+  0%{transform:translateX(0)}
+  50%{transform:translateX(50%) translateY(-20px)}
+  100%{transform:translateX(100%)}
+}
+
+/* ===== FLOATING HEARTS ===== */
+.heart{
+  position:absolute;
+  bottom:-40px;
+  font-size:18px;
+  color:rgba(255,255,255,0.45);
+  animation:floatUp linear infinite;
+  pointer-events:none;
+  z-index:2;
+}
+@keyframes floatUp{
+  from{transform:translateY(0) scale(.8);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-110vh) scale(1.4);opacity:0}
+}
+
+/* ===== CARD ===== */
+.card{
+  background:#fff;
+  padding:40px 35px;
+  border-radius:22px;
+  width:330px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  z-index:5;
+}
+
+h1{color:#e6005c;margin-bottom:12px}
+p{font-size:18px;color:#444}
+
+/* ===== BUTTON AREA ===== */
+.buttons{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  position:relative;
+}
+
+/* ===== PREMIUM BUTTON STYLE ===== */
+.buttons button{
+  padding:7px 16px;
+  font-size:13px;
+  line-height:1.2;
+  border:none;
+  cursor:pointer;
+
+  /* elegant curved shape */
+  border-radius:16px 16px 22px 22px;
+
+  /* depth */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    0 5px 14px rgba(0,0,0,0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+}
+
+/* YES */
+#yesBtn{
+  background:linear-gradient(135deg,#ff4d6d,#ff7a95);
+  color:#fff;
+}
+
+#yesBtn:hover{
+  transform:translateY(-1px) scale(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    0 8px 20px rgba(255,77,109,0.45);
+}
+
+/* NO */
+#noBtn{
+  background:linear-gradient(135deg,#e0e0e0,#bdbdbd);
+  color:#333;
+  position:relative;
+}
+
+#noBtn:hover{
+  transform:translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.45),
+    0 7px 16px rgba(0,0,0,0.25);
+}
+
+/* ===== RESULT ===== */
+#result{
+  display:none;
+  margin-top:20px;
+  font-size:20px;
+  color:#e6005c;
+}
+
+.title{
+  white-space: nowrap;        /* 👈 prevents wrapping */
+  display: flex;              /* 👈 perfect alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  font-size: 24px;            /* slightly smaller */
+  color: #e6005c;
+}
+
+</style>
 </head>
+
 <body>
-  <h1>❤️ Happy Valentine’s Day ❤️</h1>
-  <p>You are the most special person in my life 💕</p>
-  <p>Will you be my Valentine? 🌹</p>
+
+<div class="bg"></div>
+
+<div class="wave-watermark">
+  <div class="wave-text">
+    My ❤️ Teja • My ❤️ Teja • My ❤️ Teja
+  </div>
+</div>
+
+<script>
+for(let i=0;i<24;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=14+Math.random()*18+"px";
+  h.style.animationDuration=8+Math.random()*8+"s";
+  h.style.animationDelay=Math.random()*6+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+<div class="card" id="card">
+  <h1 class="title">❤️ Hey 🥰 Teja 🥰 ❤️</h1>
+
+  <p>You make my world brighter every day 🌹</p>
+
+  <p id="question"></p>
+
+  <div class="buttons" id="buttons">
+    <button id="yesBtn">Yes 💍</button>
+    <button id="noBtn"
+      onmouseenter="moveNo()"
+      ontouchstart="moveNo()">No 🙈</button>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+<script>
+const questions=[
+  "Do you smile when you see this message? 😊",
+  "Do you believe small moments can be special? ✨",
+  "Will you be my Valentine? 💖"
+];
+
+let index=0;
+
+const questionEl=document.getElementById("question");
+const buttonsEl=document.getElementById("buttons");
+const resultEl=document.getElementById("result");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const card=document.getElementById("card");
+
+questionEl.innerHTML=questions[index];
+
+function answer(){
+  index++;
+  if(index<questions.length){
+    questionEl.innerHTML=questions[index];
+  }else{
+    buttonsEl.style.display="none";
+    resultEl.style.display="block";
+    resultEl.innerHTML=
+      "You are the most special person in my life 💕<br>" +
+      "I’m really happy you’re here.<br><br>" +
+      "<b>Happy Valentine’s Day 🥰Teja🥰</b>";
+  }
+}
+
+yesBtn.addEventListener("click", answer);
+noBtn.addEventListener("click", answer);
+
+function moveNo(){
+  noBtn.style.position="absolute";
+  const maxX=card.clientWidth-noBtn.offsetWidth-20;
+  const maxY=card.clientHeight-noBtn.offsetHeight-80;
+  noBtn.style.left=Math.random()*maxX+"px";
+  noBtn.style.top=Math.random()*maxY+"px";
+}
+</script>
+
 </body>
 </html>
